@@ -9,6 +9,8 @@ import {
   Heart, Share2, Filter, Eye, ChevronRight
 } from 'lucide-react';
 import './App.css';
+import SearchPage from './components/SearchPage';
+import AddItemPage from './components/AddItemPage';
 
 // Configuration
 const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
