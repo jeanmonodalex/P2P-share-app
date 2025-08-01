@@ -240,8 +240,17 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="hero-gradient text-white py-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.pexels.com/photos/6869051/pexels-photo-6869051.jpeg" 
+            alt="People sharing" 
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Partagez, Louez, Économisez
           </h1>
@@ -251,7 +260,7 @@ const HomePage = () => {
           
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg p-2 search-bar flex flex-col md:flex-row gap-2">
+            <div className="bg-white/95 backdrop-blur rounded-lg p-2 search-bar flex flex-col md:flex-row gap-2">
               <div className="flex-1">
                 <input
                   type="text"
