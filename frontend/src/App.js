@@ -613,25 +613,13 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route 
               path="/search" 
-              element={
-                <div className="min-h-screen py-8">
-                  <div className="max-w-7xl mx-auto px-4">
-                    <h1 className="text-3xl font-bold mb-8">Recherche d'objets</h1>
-                    <p className="text-gray-600">Fonctionnalité de recherche en développement...</p>
-                  </div>
-                </div>
-              } 
+              element={<SearchPage />}
             />
             <Route 
               path="/add-item" 
               element={
                 <ProtectedRoute>
-                  <div className="min-h-screen py-8">
-                    <div className="max-w-2xl mx-auto px-4">
-                      <h1 className="text-3xl font-bold mb-8">Ajouter un objet</h1>
-                      <p className="text-gray-600">Formulaire d'ajout d'objet en développement...</p>
-                    </div>
-                  </div>
+                  <AddItemPage />
                 </ProtectedRoute>
               } 
             />
