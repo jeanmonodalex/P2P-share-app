@@ -129,25 +129,35 @@ class ShareSwissAPITester:
 
     def test_create_item(self):
         """Test creating an item"""
-        # Test with form data (multipart)
+        # Test with form data (multipart) - backend expects Form data
+        url = f"{self.base_url}/api/items"
+        headers = {'Authorization': f'Bearer {self.token}'}
+        
         item_data = {
             "titre": "Vélo électrique Trek Test",
             "description": "Vélo électrique en excellent état pour vos déplacements",
             "categorie": "Vélos",
-            "prix_par_jour": 35.0,
+            "prix_par_jour": "35.0",
             "canton": "Vaud",
             "ville": "Lausanne"
         }
         
-        success, response = self.make_request('POST', '/api/items', item_data, 
-                                            expected_status=200)
-        
-        if success and 'id' in response:
-            self.test_item_id = response['id']
-            self.log_test("Create Item", True, f"Item ID: {response['id']}")
-            return response['id']
-        else:
-            self.log_test("Create Item", False, f"Response: {response}")
+        try:
+            response = requests.post(url, data=item_data, headers=headers)
+            success = response.status_code == 200
+            
+            if success:
+                response_data = response.json()
+                if 'id' in response_data:
+                    self.test_item_id = response_data['id']
+                    self.log_test("Create Item", True, f"Item ID: {response_data['id']}")
+                    return response_data['id']
+            
+            self.log_test("Create Item", False, f"Status: {response.status_code}, Response: {response.text}")
+            return None
+            
+        except Exception as e:
+            self.log_test("Create Item", False, f"Error: {str(e)}")
             return None
 
     def test_search_items(self):
